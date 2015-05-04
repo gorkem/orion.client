@@ -8,4 +8,4 @@ exports.parseArgs= function (argv){
     	args.dir = argv[i];
     }
     return args;
-}
+};
