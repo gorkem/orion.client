@@ -1,0 +1,8 @@
+{
+  "name"    : "Electro-Orion",
+  "version" : "0.1.0",
+  "main"    : "main.js",
+  "dependencies": {
+    "connect": "~2.4.6"
+    }
+}
