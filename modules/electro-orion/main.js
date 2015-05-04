@@ -53,13 +53,14 @@ app.on('window-all-closed', function() {
 // This method will be called when Electron has done everything
 // initialization and ready for creating browser windows.
 app.on('ready', function() {
+    var preloadjs = path.resolve(process.cwd(), process.argv[1], 'preload.js');
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600, 'node-integration': false});
-//  mainWindow.openDevTools();
+  mainWindow = new BrowserWindow({width: 800, height: 600, 'preload':preloadjs});
+  //mainWindow.openDevTools();
   // and load the index.html of the app.
   var url = 'http://localhost:'+port;
   console.log("load url " + url);
-  var ret = globalShortcut.register('ctrl+r', function() { mainWindow.reload(); })
+  var ret = globalShortcut.register('ctrl+r', function() { mainWindow.reload(); });
   mainWindow.loadUrl(url);
 
   // Emitted when the window is closed.
