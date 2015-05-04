@@ -1,12 +1,12 @@
 Electro-Orion
 ==============
 
-Eclipse Orion desktop application using electron
+Eclipse Orion desktop application using [electron](http://electron.atom.io)
 
 Getting Started
 ================
 
-1. Clone this repository and switch to electro-orion branch.
+1. Clone this repository and switch to *electro-orion* branch.
 2. Change directory to *org.eclipse.orion.client/modules/electro-orion* and run *npm install* to pull in dependencies
 3. Install electron. npm is the easiest but installing from downloaded packages should also work
  ```sh 
