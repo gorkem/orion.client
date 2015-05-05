@@ -1,11 +1,17 @@
 
 /*eslint-env node */
 
-exports.parseArgs= function (argv){
-    var args = {dir:'.'};
-    argv = argv.slice(2); //remove node and script
-    for(var i =0; i<argv.length; i++){
-    	args.dir = argv[i];
-    }
-    return args;
+var fs = require('fs');
+exports.parsePath = function(argv){
+    argv = argv.slice(2);//remove node and script
+   	var thePath;
+	var candidates = argv.filter(function(arg){ return !(/^-/.test(arg)); });
+    for(var i = 0; i < candidates.length; i++){
+		try{
+			thePath = fs.realpathSync(candidates[i]);
+		}catch(error){
+			//ignore
+		}
+	}
+	return thePath;
 };
