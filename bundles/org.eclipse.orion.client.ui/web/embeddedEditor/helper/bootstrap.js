@@ -82,8 +82,24 @@ define([
 		var plugins = {};
 		pluginsToLoad.forEach(function(pluginURLString){
 			var pluginURL = new URL(pluginURLString, _code_edit_script_source);
-			plugins[pluginURL.href] = {autostart: "lazy"};
-		});
+		    if(pluginURL.protocol==='file:'){
+                var baseURL=new URL(_code_edit_script_source);
+                var base = baseURL.pathname.split("/"),
+                    parts = pluginURLString.split("/");
+                base.pop(); // remove current file name (or empty string)
+                for (var i=0; i<parts.length; i++) {
+                    if (parts[i] == ".")
+                        continue;
+                    if (parts[i] == "..")
+                        base.pop();
+                    else
+                   base.push(parts[i]);
+                 }
+                plugins[base.join("/")] ={autostart: "lazy"};
+            }else{
+			    plugins[pluginURL.href] = {autostart: "lazy"};
+            }
+        });
 		
 		pluginsToLoad = (options && options.userPlugins) ? options.defaultPlugins : [];
 		pluginsToLoad.forEach(function(pluginURLString){
